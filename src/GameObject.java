@@ -1,7 +1,8 @@
 import processing.core.PImage;
 import processing.core.PApplet;
 
-public class GameObject extends PApplet {
+public class GameObject{
+    PApplet applet;
 
     int x;
     int y;
@@ -10,37 +11,37 @@ public class GameObject extends PApplet {
     int collisionHeight;
 
     PImage image;
-    String path;
 
     boolean garbage;
     boolean draw;
     boolean hasCollision;
 
-    public GameObject(){
+    public GameObject(PApplet applet){
+        this.applet = applet;
         x = 0;
         y = 0;
         collisionWidth = 0;
         collisionHeight = 0;
         image = null;
-        path = null;
         garbage = false;
         draw = false;
         hasCollision = false;
     }
 
-    public GameObject(int x, int y, String path){
+    public GameObject(PApplet applet, int x, int y, PImage image){
+        this.applet = applet;
         this.x = x;
         this.y = y;
         collisionWidth = 0;
         collisionHeight = 0;
-        this.path = path;
-        image = loadImage(path);
+        this.image = image;
         garbage = false;
         draw = true;
         hasCollision = false;
     }
 
-    public GameObject(int x, int y, int collisionWidth, int collisionHeight, PImage image, boolean draw, boolean hasCollision){
+    public GameObject(PApplet applet, int x, int y, int collisionWidth, int collisionHeight, PImage image, boolean draw, boolean hasCollision){
+        this.applet = applet;
         this.x = x;
         this.y = y;
         this.collisionWidth = collisionWidth;
@@ -51,9 +52,9 @@ public class GameObject extends PApplet {
         this.hasCollision = hasCollision;
     }
 
-    public void draw(){
+    public void show(){
         if(draw){
-            image(image, x , y);
+            applet.image(image, x, y);
         }
     }
 }

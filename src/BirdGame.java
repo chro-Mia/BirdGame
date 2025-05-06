@@ -8,12 +8,12 @@ public class BirdGame extends PApplet{
     public void settings(){ size(650, 650); }
 
     public void setup(){
-        object = new GameObject(0, 0, "assets/tree.jpg");
+        object = new GameObject(this, 0, 0, loadImage("assets/tree.jpg"));
     }
 
     public void keyPressed(){}
 
     public void draw(){
-        object.draw();
+        object.show();
     }
 }
