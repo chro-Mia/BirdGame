@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class BirdGame extends PApplet{
 
     GameObject background;
-    GameObject bird;
+    Bird bird;
     ArrayList<ArrayList<GameObject>> layers;
     final int NUM_LAYERS = 8;
 
@@ -21,16 +21,23 @@ public class BirdGame extends PApplet{
 
         layers.get(0).add(background);
         layers.get(1).add(bird);
-
     }
 
-    public void keyPressed(){}
+    public void keyPressed(){
+        if(keyPressed && (key == ' ')){
+            bird.jump();
+            System.out.print("pressed");
+        }
+    }
 
     public void draw(){
         for(int i = 0; i < layers.size(); i++){
             for(GameObject object : layers.get(i)){
                 object.show();
+
             }
         }
+        bird.move();
+        bird.gravity();
     }
 }

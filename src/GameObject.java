@@ -5,8 +5,10 @@ public class GameObject{
     private final PApplet applet;
     private int layer;
 
-    int x;
-    int y;
+    double x;
+    double y;
+    double vx;
+    double vy;
 
     int collisionWidth;
     int collisionHeight;
@@ -21,6 +23,8 @@ public class GameObject{
         this.applet = applet;
         x = 0;
         y = 0;
+        vx = 0;
+        vy = 0;
         layer = 0;
         collisionWidth = 0;
         collisionHeight = 0;
@@ -30,10 +34,12 @@ public class GameObject{
         hasCollision = false;
     }
 
-    public GameObject(PApplet applet, int x, int y, PImage image, int layer){
+    public GameObject(PApplet applet, double x, double y, PImage image, int layer){
         this.applet = applet;
         this.x = x;
         this.y = y;
+        vx = 0;
+        vy = 0;
         this.layer = layer;
         collisionWidth = 0;
         collisionHeight = 0;
@@ -43,10 +49,12 @@ public class GameObject{
         hasCollision = false;
     }
 
-    public GameObject(PApplet applet, int x, int y, PImage image, int layer, int collisionWidth, int collisionHeight, boolean show, boolean hasCollision){
+    public GameObject(PApplet applet, double x, double y, PImage image, int layer, int collisionWidth, int collisionHeight, boolean show, boolean hasCollision){
         this.applet = applet;
         this.x = x;
         this.y = y;
+        vx = 0;
+        vy = 0;
         this.layer = layer;
         this.collisionWidth = collisionWidth;
         this.collisionHeight = collisionHeight;
@@ -58,11 +66,16 @@ public class GameObject{
 
     public void show(){
         if(show){
-            applet.image(image, x, y);
+            applet.image(image, (float) x, (float)y);
         }
     }
 
     public int getLayer(){
         return layer;
+    }
+
+    public void move(){
+        x += vx;
+        y += vy;
     }
 }
