@@ -8,6 +8,7 @@ public class BirdGame extends PApplet{
     Bird bird;
     ArrayList<ArrayList<GameObject>> layers;
     final int NUM_LAYERS = 8;
+    boolean firstInputFlag = false;
 
     public void settings(){ size(650, 650); }
 
@@ -25,6 +26,7 @@ public class BirdGame extends PApplet{
 
     public void keyPressed(){
         if(keyPressed && (key == ' ')){
+            firstInputFlag = true;
             bird.jump();
             System.out.print("pressed");
         }
@@ -38,6 +40,9 @@ public class BirdGame extends PApplet{
             }
         }
         bird.move();
-        bird.gravity();
+        if(firstInputFlag){
+            bird.gravity();
+        }
+
     }
 }
