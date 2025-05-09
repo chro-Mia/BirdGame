@@ -78,4 +78,14 @@ public class GameObject{
         x += vx;
         y += vy;
     }
+
+    public boolean detectCollision(GameObject obj){
+        if(obj.hasCollision && hasCollision){
+            return (x >= obj.x && x <= obj.x + obj.collisionWidth && y >= obj.y && y <= obj.y + obj.collisionHeight) ||
+                    (x + collisionWidth >= obj.x && x <= obj.x + obj.collisionWidth && y >= obj.y && y <= obj.y + obj.collisionHeight) ||
+                    (x + collisionWidth >= obj.x && x <= obj.x + obj.collisionWidth && y + collisionHeight >= obj.y && y <= obj.y + obj.collisionHeight) ||
+                    (x >= obj.x && x <= obj.x + obj.collisionWidth && y >= obj.y && y + collisionHeight <= obj.y + obj.collisionHeight);
+        }
+        return false;
+    }
 }

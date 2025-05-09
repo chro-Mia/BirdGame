@@ -7,8 +7,8 @@ public class Bird extends GameObject{
         hasCollision = true;
         this.image = image;
         show = true;
-        collisionWidth = 30;
-        collisionHeight = 30;
+        collisionWidth = 75;
+        collisionHeight = 75;
         x = 100;
         y = 325;
     }
