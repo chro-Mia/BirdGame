@@ -9,17 +9,17 @@ public class Bird extends GameObject{
         hasCollision = true;
         this.image = image;
         show = true;
-        collisionWidth = 75;
-        collisionHeight = 75;
+        collisionWidth = 60;
+        collisionHeight = 60;
         x = 100;
-        y = 325;
+        y = 295;
     }
 
     public void jump(){
-        vy = -10;
+        vy = -11;
     }
 
     public void gravity(){
-        vy += 0.4;
+        vy += 0.4f;
     }
 }

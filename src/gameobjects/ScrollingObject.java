@@ -4,7 +4,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class ScrollingObject extends GameObject{
-    public ScrollingObject(PApplet applet, double x, double y, PImage image, double vx){
+    public ScrollingObject(PApplet applet, float x, float y, PImage image, float vx){
         super(applet, x, y, image);
         this.vx = vx;
     }

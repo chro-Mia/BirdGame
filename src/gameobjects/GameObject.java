@@ -6,10 +6,10 @@ import processing.core.PApplet;
 public class GameObject{
     private final PApplet applet;
 
-    double x;
-    double y;
-    double vx;
-    double vy;
+    float x;
+    float y;
+    float vx;
+    float vy;
 
     int collisionWidth;
     int collisionHeight;
@@ -34,7 +34,7 @@ public class GameObject{
         hasCollision = false;
     }
 
-    public GameObject(PApplet applet, double x, double y, PImage image){
+    public GameObject(PApplet applet, float x, float y, PImage image){
         this.applet = applet;
         this.x = x;
         this.y = y;
@@ -48,7 +48,7 @@ public class GameObject{
         hasCollision = false;
     }
 
-    public GameObject(PApplet applet, double x, double y, PImage image, int collisionWidth, int collisionHeight, boolean show, boolean hasCollision){
+    public GameObject(PApplet applet, float x, float y, PImage image, int collisionWidth, int collisionHeight, boolean show, boolean hasCollision){
         this.applet = applet;
         this.x = x;
         this.y = y;

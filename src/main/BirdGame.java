@@ -12,7 +12,7 @@ public class BirdGame extends PApplet{
     ScrollingObject background1;
     ScrollingObject background2;
     Bird bird;
-    GameObject pipe;
+
     ArrayList<ArrayList<GameObject>> layers;
     final int NUM_LAYERS = 8;
     boolean firstInputFlag = false;
@@ -24,7 +24,6 @@ public class BirdGame extends PApplet{
         background1 = new ScrollingObject(this, 0, 0, loadImage("assets/background.png"), -1);
         background2 = new ScrollingObject(this, 650, 0, loadImage("assets/background.png"), -1);
         bird = new Bird(this, loadImage("assets/bird.png"));
-        pipe = new GameObject(this, 600, 400, loadImage("assets/pipe.png"), 100, 300, true, true);
         layers = new ArrayList<>();
         for(int i = 0; i < NUM_LAYERS; i++){
             layers.add(new ArrayList<>());
@@ -32,7 +31,7 @@ public class BirdGame extends PApplet{
 
         layers.get(0).add(background1);
         layers.get(0).add(background2);
-        layers.get(1).add(pipe);
+
         layers.get(1).add(bird);
     }
 
