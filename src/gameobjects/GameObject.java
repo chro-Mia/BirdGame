@@ -64,7 +64,7 @@ public class GameObject{
 
     public void show(){
         if(show){
-            applet.image(image, (float) x, (float)y);
+            applet.image(image, x, y);
         }
     }
 

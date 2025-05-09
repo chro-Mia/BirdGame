@@ -9,8 +9,7 @@ import java.util.ArrayList;
 
 public class BirdGame extends PApplet{
 
-    ScrollingObject background1;
-    ScrollingObject background2;
+    ScrollingObject background;
     Bird bird;
 
     ArrayList<ArrayList<GameObject>> layers;
@@ -21,16 +20,12 @@ public class BirdGame extends PApplet{
     public void settings(){ size(650, 650); }
 
     public void setup(){
-        background1 = new ScrollingObject(this, 0, 0, loadImage("assets/background.png"), -1);
-        background2 = new ScrollingObject(this, 650, 0, loadImage("assets/background.png"), -1);
+        background = new ScrollingObject(this, loadImage("assets/background.png"), -1);
         bird = new Bird(this, loadImage("assets/bird.png"));
         layers = new ArrayList<>();
         for(int i = 0; i < NUM_LAYERS; i++){
             layers.add(new ArrayList<>());
         }
-
-        layers.get(0).add(background1);
-        layers.get(0).add(background2);
 
         layers.get(1).add(bird);
     }
@@ -44,6 +39,7 @@ public class BirdGame extends PApplet{
 
     public void draw(){
         if(gameActive){
+            background.scroll();
             for(int i = 0; i < layers.size(); i++){
                 for(GameObject object : layers.get(i)){
                     if(bird.detectCollision(object) && object != bird){
