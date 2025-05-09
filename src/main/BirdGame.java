@@ -1,10 +1,16 @@
+package main;
+
+import gameobjects.Bird;
+import gameobjects.GameObject;
+import gameobjects.ScrollingObject;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
 
 public class BirdGame extends PApplet{
 
-    GameObject background;
+    ScrollingObject background1;
+    ScrollingObject background2;
     Bird bird;
     GameObject pipe;
     ArrayList<ArrayList<GameObject>> layers;
@@ -15,18 +21,19 @@ public class BirdGame extends PApplet{
     public void settings(){ size(650, 650); }
 
     public void setup(){
-        background = new GameObject(this, 0, 0, loadImage("assets/background.jpg"), 0);
+        background1 = new ScrollingObject(this, 0, 0, loadImage("assets/background.png"), -1);
+        background2 = new ScrollingObject(this, 650, 0, loadImage("assets/background.png"), -1);
         bird = new Bird(this, loadImage("assets/bird.png"));
-        pipe = new GameObject(this, 600, 400, loadImage("assets/pipe.png"), 1, 100, 300, true, true);
+        pipe = new GameObject(this, 600, 400, loadImage("assets/pipe.png"), 100, 300, true, true);
         layers = new ArrayList<>();
         for(int i = 0; i < NUM_LAYERS; i++){
             layers.add(new ArrayList<>());
         }
 
-        layers.get(0).add(background);
+        layers.get(0).add(background1);
+        layers.get(0).add(background2);
         layers.get(1).add(pipe);
         layers.get(1).add(bird);
-        pipe.vx = -2;
     }
 
     public void keyPressed(){

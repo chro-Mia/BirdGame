@@ -1,9 +1,10 @@
+package gameobjects;
+
 import processing.core.PImage;
 import processing.core.PApplet;
 
 public class GameObject{
     private final PApplet applet;
-    private int layer;
 
     double x;
     double y;
@@ -25,7 +26,6 @@ public class GameObject{
         y = 0;
         vx = 0;
         vy = 0;
-        layer = 0;
         collisionWidth = 0;
         collisionHeight = 0;
         image = null;
@@ -34,13 +34,12 @@ public class GameObject{
         hasCollision = false;
     }
 
-    public GameObject(PApplet applet, double x, double y, PImage image, int layer){
+    public GameObject(PApplet applet, double x, double y, PImage image){
         this.applet = applet;
         this.x = x;
         this.y = y;
         vx = 0;
         vy = 0;
-        this.layer = layer;
         collisionWidth = 0;
         collisionHeight = 0;
         this.image = image;
@@ -49,13 +48,12 @@ public class GameObject{
         hasCollision = false;
     }
 
-    public GameObject(PApplet applet, double x, double y, PImage image, int layer, int collisionWidth, int collisionHeight, boolean show, boolean hasCollision){
+    public GameObject(PApplet applet, double x, double y, PImage image, int collisionWidth, int collisionHeight, boolean show, boolean hasCollision){
         this.applet = applet;
         this.x = x;
         this.y = y;
         vx = 0;
         vy = 0;
-        this.layer = layer;
         this.collisionWidth = collisionWidth;
         this.collisionHeight = collisionHeight;
         this.image = image;
@@ -68,10 +66,6 @@ public class GameObject{
         if(show){
             applet.image(image, (float) x, (float)y);
         }
-    }
-
-    public int getLayer(){
-        return layer;
     }
 
     public void move(){

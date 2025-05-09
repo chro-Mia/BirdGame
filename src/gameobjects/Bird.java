@@ -1,3 +1,5 @@
+package gameobjects;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -18,6 +20,6 @@ public class Bird extends GameObject{
     }
 
     public void gravity(){
-        vy += 0.3;
+        vy += 0.4;
     }
 }
