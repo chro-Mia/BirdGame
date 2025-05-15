@@ -34,6 +34,7 @@ public class BirdGame extends PApplet{
         if(keyPressed && (key == ' ')){
             firstInputFlag = true;
             bird.jump();
+            ;
         }
     }
 
