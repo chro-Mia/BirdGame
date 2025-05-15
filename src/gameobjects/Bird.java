@@ -4,10 +4,10 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Bird extends GameObject{
-    public Bird(PApplet applet, PImage image) {
+    public Bird(PApplet applet) {
         super(applet);
         hasCollision = true;
-        this.image = image;
+        this.image = applet.loadImage("assets/bird.png");
         show = true;
         collisionWidth = 60;
         collisionHeight = 60;

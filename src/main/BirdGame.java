@@ -21,7 +21,7 @@ public class BirdGame extends PApplet{
 
     public void setup(){
         background = new ScrollingObject(this, loadImage("assets/background.png"), -1);
-        bird = new Bird(this, loadImage("assets/bird.png"));
+        bird = new Bird(this);
         layers = new ArrayList<>();
         for(int i = 0; i < NUM_LAYERS; i++){
             layers.add(new ArrayList<>());

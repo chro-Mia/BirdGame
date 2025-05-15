@@ -4,7 +4,7 @@ import processing.core.PImage;
 import processing.core.PApplet;
 
 public class GameObject{
-    private final PApplet applet;
+    final PApplet applet;
 
     float x;
     float y;
