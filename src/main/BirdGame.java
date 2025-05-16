@@ -11,6 +11,7 @@ public class BirdGame extends PApplet{
 
     ScrollingObject background;
     Bird bird;
+    Integer totalFrame = 0;
 
     ArrayList<ArrayList<GameObject>> layers;
     final int NUM_LAYERS = 8;
@@ -39,6 +40,7 @@ public class BirdGame extends PApplet{
     }
 
     public void draw(){
+        totalFrame++;
         if(gameActive){
             background.scroll();
             for(int i = 0; i < layers.size(); i++){
