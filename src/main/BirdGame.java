@@ -55,6 +55,13 @@ public class BirdGame extends PApplet{
     }
 
     public void draw(){
+
+        //TODO: needs refactor to remove layers cuz they're useless and terrible and probably other things as well
+        //we should just use separate arrays for the background, birds, and pipes and render them separately
+        //GameObject might also need some tweaks cuz its kinda a jumbled mess rn
+
+
+
         totalFrame++;
         if(gameActive){
             background.scroll();
