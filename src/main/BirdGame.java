@@ -37,12 +37,14 @@ public class BirdGame extends PApplet{
             firstInputFlag = true;
             bird.jump();
             isJumpBeingHeld = true;
+            bird.frame2();
         }
     }
 
     public void keyReleased(){
         if(key == ' '){
             isJumpBeingHeld = false;
+            bird.frame1();
         }
     }
 

@@ -4,10 +4,16 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Bird extends GameObject{
+    PImage frame1;
+    PImage frame2;
+
     public Bird(PApplet applet) {
         super(applet);
         hasCollision = true;
-        this.image = applet.loadImage("assets/bird.png");
+        frame1 = applet.loadImage("assets/bird1.png");
+        frame2 = applet.loadImage("assets/bird2.png");
+        this.image = frame1;
+
         show = true;
         collisionWidth = 60;
         collisionHeight = 60;
@@ -21,5 +27,13 @@ public class Bird extends GameObject{
 
     public void gravity(){
         vy += 0.4f;
+    }
+
+    public void frame1(){
+        image = frame1;
+    }
+
+    public void frame2(){
+        image = frame2;
     }
 }
