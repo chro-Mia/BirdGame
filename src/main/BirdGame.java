@@ -16,6 +16,7 @@ public class BirdGame extends PApplet{
     final int NUM_LAYERS = 8;
     boolean firstInputFlag = false;
     boolean gameActive = true;
+    boolean test;
 
     public void settings(){ size(650, 650); }
 
@@ -34,7 +35,6 @@ public class BirdGame extends PApplet{
         if(keyPressed && (key == ' ')){
             firstInputFlag = true;
             bird.jump();
-            ;
         }
     }
 
