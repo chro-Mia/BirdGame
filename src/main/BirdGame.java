@@ -59,12 +59,11 @@ public class BirdGame extends PApplet{
         if(gameActive){
             background.scroll();
 
-            if(totalFrame % 180 == 0){
+            if(totalFrame % 180 == 0 && firstInputFlag){
                 int pipeOffset = (int) (Math.random() * 200) + 350;
-
                 GameObject firstPipe = new GameObject(this, 750, pipeOffset, bottomPipe, 100, 350, true, true);
                 layers.get(1).add(firstPipe);
-                layers.get(1).add(new GameObject(this, 750, firstPipe.getY() - 500, topPipe, 100, 350, true, true));
+                layers.get(1).add(new GameObject(this, 750, firstPipe.getY() - 525, topPipe, 100, 350, true, true));
             }
 
             for(int i = 0; i < layers.size(); i++){
