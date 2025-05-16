@@ -17,7 +17,7 @@ public class BirdGame extends PApplet{
     final int NUM_LAYERS = 8;
     boolean firstInputFlag = false;
     boolean gameActive = true;
-    boolean test;
+    boolean isJumpBeingHeld = false;
 
     public void settings(){ size(650, 650); }
 
@@ -33,9 +33,16 @@ public class BirdGame extends PApplet{
     }
 
     public void keyPressed(){
-        if(keyPressed && (key == ' ')){
+        if(keyPressed && (key == ' ') && !isJumpBeingHeld){
             firstInputFlag = true;
             bird.jump();
+            isJumpBeingHeld = true;
+        }
+    }
+
+    public void keyReleased(){
+        if(key == ' '){
+            isJumpBeingHeld = false;
         }
     }
 
