@@ -52,7 +52,7 @@ public class GameObject{
         this.applet = applet;
         this.x = x;
         this.y = y;
-        vx = 0;
+        vx = -2;
         vy = 0;
         this.collisionWidth = collisionWidth;
         this.collisionHeight = collisionHeight;
@@ -81,5 +81,21 @@ public class GameObject{
                     (x >= obj.x && x <= obj.x + obj.collisionWidth && y >= obj.y && y + collisionHeight <= obj.y + obj.collisionHeight);
         }
         return false;
+    }
+
+    public float getX(){
+        return x;
+    }
+
+    public float getY(){
+        return y;
+    }
+
+    public void markGarbage(){
+        garbage = true;
+    }
+
+    public boolean isGarbage(){
+        return garbage;
     }
 }

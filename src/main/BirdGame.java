@@ -4,6 +4,7 @@ import gameobjects.Bird;
 import gameobjects.GameObject;
 import gameobjects.ScrollingObject;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,8 @@ public class BirdGame extends PApplet{
     boolean firstInputFlag = false;
     boolean gameActive = true;
     boolean isJumpBeingHeld = false;
+    PImage topPipe;
+    PImage bottomPipe;
 
     public void settings(){ size(650, 650); }
 
@@ -29,7 +32,10 @@ public class BirdGame extends PApplet{
             layers.add(new ArrayList<>());
         }
 
-        layers.get(1).add(bird);
+        topPipe = loadImage("assets/toppipe.png");
+        bottomPipe = loadImage("assets/bottompipe.png");
+
+        layers.get(2).add(bird);
     }
 
     public void keyPressed(){
@@ -52,6 +58,15 @@ public class BirdGame extends PApplet{
         totalFrame++;
         if(gameActive){
             background.scroll();
+
+            if(totalFrame % 180 == 0){
+                int pipeOffset = (int) (Math.random() * 200) + 350;
+
+                GameObject firstPipe = new GameObject(this, 750, pipeOffset, bottomPipe, 100, 350, true, true);
+                layers.get(1).add(firstPipe);
+                layers.get(1).add(new GameObject(this, 750, firstPipe.getY() - 500, topPipe, 100, 350, true, true));
+            }
+
             for(int i = 0; i < layers.size(); i++){
                 for(GameObject object : layers.get(i)){
                     if(bird.detectCollision(object) && object != bird){
@@ -63,7 +78,17 @@ public class BirdGame extends PApplet{
                     if(firstInputFlag){
                         object.move();
                     }
+                    if(object.getX() < -650){
+                        object.markGarbage();
+                    }
                     object.show();
+                }
+            }
+
+            //??? we should remove layers cuz its confusing and bad and honestly pretty useless
+            for(int i = layers.get(1).size() - 1; i >= 0; i--){
+                if(layers.get(1).get(i).isGarbage()){
+                    layers.get(1).remove(layers.get(1).get(i));
                 }
             }
         }

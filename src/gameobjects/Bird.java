@@ -22,7 +22,7 @@ public class Bird extends GameObject{
     }
 
     public void jump(){
-        vy = -11;
+        vy = -8;
     }
 
     public void gravity(){
