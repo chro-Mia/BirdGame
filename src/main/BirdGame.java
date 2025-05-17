@@ -13,6 +13,8 @@ public class BirdGame extends PApplet{
     ScrollingObject background;
     Bird bird;
     Integer totalFrame = 0;
+    Integer gameTimeFrame = 0;
+    float gameSpeedMultiplier = -1f;
 
     ArrayList<ArrayList<GameObject>> layers;
     final int NUM_LAYERS = 8;
@@ -64,13 +66,25 @@ public class BirdGame extends PApplet{
 
         totalFrame++;
         if(gameActive){
+
+            if(firstInputFlag){
+                gameTimeFrame++;
+            }
+
+
             background.scroll();
 
-            if(totalFrame % 180 == 0 && firstInputFlag){
+            if(gameTimeFrame % 1980 == 0 && firstInputFlag && gameSpeedMultiplier <= 8.0f){
+                gameSpeedMultiplier = gameSpeedMultiplier * 2;
+            }
+
+            text(((Float) gameSpeedMultiplier).toString(), 0, 20);
+
+            if(gameTimeFrame % 180 == 0 && firstInputFlag && gameTimeFrame % 1980 != 0){
                 int pipeOffset = (int) (Math.random() * 200) + 350;
-                GameObject firstPipe = new GameObject(this, 750, pipeOffset, bottomPipe, 100, 350, true, true);
+                GameObject firstPipe = new GameObject(this, 750, pipeOffset, bottomPipe, 100, 350, 2 * gameSpeedMultiplier, 0, true, true);
                 layers.get(1).add(firstPipe);
-                layers.get(1).add(new GameObject(this, 750, firstPipe.getY() - 525, topPipe, 100, 350, true, true));
+                layers.get(1).add(new GameObject(this, 750, firstPipe.getY() - 525, topPipe, 100, 350, 2 * gameSpeedMultiplier, 0, true, true));
             }
 
             for(int i = 0; i < layers.size(); i++){

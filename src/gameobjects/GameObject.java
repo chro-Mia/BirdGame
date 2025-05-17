@@ -48,12 +48,21 @@ public class GameObject{
         hasCollision = false;
     }
 
-    public GameObject(PApplet applet, float x, float y, PImage image, int collisionWidth, int collisionHeight, boolean show, boolean hasCollision){
+    public GameObject(PApplet applet,
+                      float x,
+                      float y,
+                      PImage image,
+                      int collisionWidth,
+                      int collisionHeight,
+                      float vx,
+                      float vy,
+                      boolean show,
+                      boolean hasCollision){
         this.applet = applet;
         this.x = x;
         this.y = y;
-        vx = -2;
-        vy = 0;
+        this.vx = vx;
+        this.vy = vy;
         this.collisionWidth = collisionWidth;
         this.collisionHeight = collisionHeight;
         this.image = image;
@@ -97,5 +106,9 @@ public class GameObject{
 
     public boolean isGarbage(){
         return garbage;
+    }
+
+    public void setVx(float vx){
+        this.vx = vx;
     }
 }
