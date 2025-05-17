@@ -6,6 +6,7 @@ import processing.core.PImage;
 public class Bird extends GameObject{
     PImage frame1;
     PImage frame2;
+    PImage frame3;
 
     public Bird(PApplet applet) {
         super(applet);
@@ -35,5 +36,9 @@ public class Bird extends GameObject{
 
     public void frame2(){
         image = frame2;
+    }
+
+    public void frame3(){
+        image = frame3;
     }
 }

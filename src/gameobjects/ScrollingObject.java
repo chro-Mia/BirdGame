@@ -18,13 +18,15 @@ public class ScrollingObject{
         this.image = image;
     }
 
-    public void scroll() {
+    public void move() {
         x += vx;
         if(x < -1 * image.pixelWidth){
             x = 0;
         }
+    }
+
+    public void show(){
         applet.image(image, x, 0);
         applet.image(image, x + image.pixelWidth, 0);
-
     }
 }
