@@ -39,8 +39,8 @@ public class BirdGame extends PApplet{
         topPipe = loadImage("assets/toppipe.png");
         bottomPipe = loadImage("assets/bottompipe.png");
         pipes = new ArrayList<>();
-        title = new GameObject(this, 100, 100, loadImage("assets/title.png"));
-        death = new GameObject(this, 100, 100, loadImage("assets/youlose.png"));
+        title = new GameObject(this, 100, 150, loadImage("assets/title.png"));
+        death = new GameObject(this, 100, 150, loadImage("assets/youlose.png"));
     }
 
     public void keyPressed(){
@@ -130,6 +130,7 @@ public class BirdGame extends PApplet{
             object.show();
         }
 
+
         //player logic
         if(firstInputFlag){
             bird.gravity();
@@ -140,7 +141,16 @@ public class BirdGame extends PApplet{
         bird.move();
         bird.show();
 
-        text(score, 0, 10);
+        if(firstInputFlag){
+            if(score >= 0 && score < 10){
+                textSize(100);
+                text(score, 300, 100);
+            }
+            else if(score >= 10 && score < 100){
+                textSize(100);
+                text(score, 275, 100);
+            }
+        }
 
         if(!firstInputFlag){
             title.show();
