@@ -83,9 +83,9 @@ public class BirdGame extends PApplet{
             }
 
             if (gameTimeFrame % spawnInterval == 0 && firstInputFlag && !isSpawningPaused) {
-                int pipeOffset = (int) (Math.random() * 200) + 350;
-                GameObject firstPipe = new GameObject(this, 650, pipeOffset, bottomPipe, 100, 350, 2 * gameSpeedMultiplier, 0, true, true);
-                GameObject secondPipe = new GameObject(this, 650, firstPipe.getY() - 525, topPipe, 100, 350, 2 * gameSpeedMultiplier, 0, true, true);
+                int pipeOffset = (int) (Math.random() * 250) + 300;
+                GameObject firstPipe = new GameObject(this, 650, pipeOffset, bottomPipe, 100, 600, 2 * gameSpeedMultiplier, 0, true, true);
+                GameObject secondPipe = new GameObject(this, 650, firstPipe.getY() - 775, topPipe, 100, 600, 2 * gameSpeedMultiplier, 0, true, true);
                 firstPipe.score();
                 pipes.add(firstPipe);
                 pipes.add(secondPipe);
@@ -124,7 +124,7 @@ public class BirdGame extends PApplet{
             if (firstInputFlag && isPlayerAlive){
                 object.move();
             }
-            if(object.getX() <= -100 && isSpawningPaused){
+            if(object.getX() <= -100 && (isSpawningPaused || score > 40)){
                 object.markGarbage();
             }
             object.show();
@@ -133,6 +133,9 @@ public class BirdGame extends PApplet{
         //player logic
         if(firstInputFlag){
             bird.gravity();
+        }
+        if(bird.getY() < 0 || bird.getY() + 50 > 650){
+            isPlayerAlive = false;
         }
         bird.move();
         bird.show();
