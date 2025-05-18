@@ -10,21 +10,26 @@ import java.util.ArrayList;
 
 public class BirdGame extends PApplet{
 
+    boolean firstInputFlag = false;
+    boolean isPlayerAlive = true;
+    boolean isJumpBeingHeld = false;
+    boolean isSpawningPaused = false;
+
+    ArrayList<GameObject> pipes;
+
     ScrollingObject background;
     Bird bird;
     GameObject title;
     GameObject death;
-    Integer totalFrame = 0;
-    Integer gameTimeFrame = 0;
-    float gameSpeedMultiplier = -1f;
-    Integer score = 0;
 
-    ArrayList<GameObject> pipes;
-    boolean firstInputFlag = false;
-    boolean isPlayerAlive = true;
-    boolean isJumpBeingHeld = false;
     PImage topPipe;
     PImage bottomPipe;
+
+    int gameTimeFrame = 0;
+    float gameSpeedMultiplier = -1f;
+    Integer score = 0;
+    int spawnInterval = 180;
+    int speedTheGameUpOnThisFrame = -1;
 
     public void settings(){ size(650, 650); }
 
@@ -52,7 +57,9 @@ public class BirdGame extends PApplet{
             isPlayerAlive = true;
             gameTimeFrame = 0;
             gameSpeedMultiplier = -1f;
+            spawnInterval = 180;
             bird.jump();
+            score = 0;
         }
     }
 
@@ -68,7 +75,6 @@ public class BirdGame extends PApplet{
         //GameObject might also need some tweaks cuz its kinda a jumbled mess rn
         //if statements my beloved
 
-        totalFrame++;
         if(isPlayerAlive) {
 
             //actual game time
@@ -76,20 +82,26 @@ public class BirdGame extends PApplet{
                 gameTimeFrame++;
             }
 
-            //difficulty ramp logic
-            if (gameTimeFrame % 1980 == 0 && firstInputFlag && gameSpeedMultiplier >= -6.0f) {
-                gameSpeedMultiplier--;
-            }
-
-            //pipe spawning logic
-            if (gameTimeFrame % 180 == 0 && firstInputFlag && gameTimeFrame % 1980 != 0) {
+            if (gameTimeFrame % spawnInterval == 0 && firstInputFlag && !isSpawningPaused) {
                 int pipeOffset = (int) (Math.random() * 200) + 350;
-                GameObject firstPipe = new GameObject(this, 750, pipeOffset, bottomPipe, 100, 350, 2 * gameSpeedMultiplier, 0, true, true);
-                GameObject secondPipe = new GameObject(this, 750, firstPipe.getY() - 525, topPipe, 100, 350, 2 * gameSpeedMultiplier, 0, true, true);
+                GameObject firstPipe = new GameObject(this, 650, pipeOffset, bottomPipe, 100, 350, 2 * gameSpeedMultiplier, 0, true, true);
+                GameObject secondPipe = new GameObject(this, 650, firstPipe.getY() - 525, topPipe, 100, 350, 2 * gameSpeedMultiplier, 0, true, true);
+                firstPipe.score();
                 pipes.add(firstPipe);
                 pipes.add(secondPipe);
             }
 
+            if(pipes.size() >= 20 && gameSpeedMultiplier > -4){
+                isSpawningPaused = true;
+                speedTheGameUpOnThisFrame = gameTimeFrame + 450;
+            }
+
+            if(gameTimeFrame == speedTheGameUpOnThisFrame){
+                gameSpeedMultiplier--;
+                background.setVx(background.getVx() - 1);
+                spawnInterval = (int)(spawnInterval * 0.7);
+                isSpawningPaused = false;
+            }
 
             //background logic
             background.move();
@@ -105,10 +117,14 @@ public class BirdGame extends PApplet{
                 bird.setVy(-8);
                 bird.setVx(0);
             }
-            if (firstInputFlag && isPlayerAlive) {
+            if(object.getX() + 100 < bird.getX() && !object.hasBeenScored()){
+                object.score();
+                score++;
+            }
+            if (firstInputFlag && isPlayerAlive){
                 object.move();
             }
-            if (object.getX() < -650) {
+            if(object.getX() <= -100 && isSpawningPaused){
                 object.markGarbage();
             }
             object.show();

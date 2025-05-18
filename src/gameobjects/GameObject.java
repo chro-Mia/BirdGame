@@ -19,6 +19,7 @@ public class GameObject{
     boolean garbage;
     boolean show;
     boolean hasCollision;
+    boolean scored;
 
     public GameObject(PApplet applet){
         this.applet = applet;
@@ -32,6 +33,7 @@ public class GameObject{
         garbage = false;
         show = false;
         hasCollision = false;
+        scored = false;
     }
 
     public GameObject(PApplet applet, float x, float y, PImage image){
@@ -46,6 +48,7 @@ public class GameObject{
         garbage = false;
         show = true;
         hasCollision = false;
+        scored = false;
     }
 
     public GameObject(PApplet applet,
@@ -69,6 +72,7 @@ public class GameObject{
         garbage = false;
         this.show = show;
         this.hasCollision = hasCollision;
+        scored = false;
     }
 
     public void show(){
@@ -114,5 +118,13 @@ public class GameObject{
 
     public void setVy(float vy){
         this.vy = vy;
+    }
+
+    public boolean hasBeenScored(){
+        return scored;
+    }
+
+    public void score(){
+        scored = true;
     }
 }

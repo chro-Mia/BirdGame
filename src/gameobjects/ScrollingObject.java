@@ -29,4 +29,12 @@ public class ScrollingObject{
         applet.image(image, x, 0);
         applet.image(image, x + image.pixelWidth, 0);
     }
+
+    public void setVx(float vx){
+        this.vx = vx;
+    }
+
+    public float getVx(){
+        return vx;
+    }
 }
