@@ -28,6 +28,7 @@ public class BirdGame extends PApplet{
     int gameTimeFrame = 0;
     float gameSpeedMultiplier = -1f;
     Integer score = 0;
+    Integer highScore = 0;
     int spawnInterval = 180;
     int speedTheGameUpOnThisFrame = -1;
 
@@ -55,6 +56,7 @@ public class BirdGame extends PApplet{
         if(keyPressed && (key == ' ') && !isJumpBeingHeld && !isPlayerAlive){
             setup();
             isPlayerAlive = true;
+            isSpawningPaused = false;
             gameTimeFrame = 0;
             gameSpeedMultiplier = -1f;
             spawnInterval = 180;
@@ -76,6 +78,9 @@ public class BirdGame extends PApplet{
         //if statements my beloved
 
         if(isPlayerAlive) {
+            if(highScore < score){
+                highScore = score;
+            }
 
             //actual game time
             if (firstInputFlag) {
@@ -93,13 +98,13 @@ public class BirdGame extends PApplet{
 
             if(pipes.size() >= 20 && gameSpeedMultiplier > -4){
                 isSpawningPaused = true;
-                speedTheGameUpOnThisFrame = gameTimeFrame + 450;
+                speedTheGameUpOnThisFrame = (int)(gameTimeFrame + 450 / -gameSpeedMultiplier);
             }
 
             if(gameTimeFrame == speedTheGameUpOnThisFrame){
                 gameSpeedMultiplier--;
                 background.setVx(background.getVx() - 1);
-                spawnInterval = (int)(spawnInterval * 0.7);
+                spawnInterval = (int)(spawnInterval * 0.65);
                 isSpawningPaused = false;
             }
 
@@ -142,13 +147,18 @@ public class BirdGame extends PApplet{
         bird.show();
 
         if(firstInputFlag){
+            textSize(30);
+            text("High-Score: " + highScore, 0, 30);
+            textSize(100);
+
             if(score >= 0 && score < 10){
-                textSize(100);
                 text(score, 300, 100);
             }
             else if(score >= 10 && score < 100){
-                textSize(100);
                 text(score, 275, 100);
+            }
+            else if(score >= 100 && score < 1000){
+                text(score, 250, 100);
             }
         }
 
