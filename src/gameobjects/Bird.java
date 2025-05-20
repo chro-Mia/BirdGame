@@ -13,11 +13,12 @@ public class Bird extends GameObject{
         hasCollision = true;
         frame1 = applet.loadImage("assets/bird1.png");
         frame2 = applet.loadImage("assets/bird2.png");
+        frame3 = applet.loadImage("assets/bird3.png");
         this.image = frame1;
 
         show = true;
-        collisionWidth = 50;
-        collisionHeight = 50;
+        collisionWidth = 60;
+        collisionHeight = 39;
         x = 100;
         y = 295;
     }

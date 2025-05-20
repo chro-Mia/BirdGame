@@ -143,8 +143,6 @@ public class BirdGame extends PApplet{
         if(bird.getY() < 0 || bird.getY() + 50 > 650){
             isPlayerAlive = false;
         }
-        bird.move();
-        bird.show();
 
         if(firstInputFlag){
             textSize(30);
@@ -168,7 +166,11 @@ public class BirdGame extends PApplet{
 
         if(!isPlayerAlive){
             death.show();
+            bird.frame3();
         }
+
+        bird.move();
+        bird.show();
 
         //garbage collection
         for(int i = pipes.size() - 1; i >= 0; i--){
