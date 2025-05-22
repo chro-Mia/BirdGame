@@ -1,0 +1,14 @@
+THESE ASSETS WERE FOUND ON GOOGLE
+
+background.png
+bird1.png
+bottompipe.png
+toppipe.png
+
+
+THESE ASSETS WERE CREATED BY US
+
+bird2.png
+bird3.png
+title.png
+youlose.png
