@@ -18,6 +18,10 @@ public class ScrollingObject{
         this.image = image;
     }
 
+    //when the left half object is entirely off the left border of the screen, it gets teleported back to the beginning
+    //seamlessly
+
+    //with certain textures and images, this can make the scrolling infinite and seamless
     public void move() {
         x += vx;
         if(x < -1 * image.pixelWidth){
@@ -25,6 +29,10 @@ public class ScrollingObject{
         }
     }
 
+    //each object actually displays two images, one at the normal position, and one that is a certain amount of pixels
+    //to the right of the original image
+
+    //this allows it to actually scroll without smearing
     public void show(){
         applet.image(image, x, 0);
         applet.image(image, x + image.pixelWidth, 0);

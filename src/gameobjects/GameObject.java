@@ -86,6 +86,8 @@ public class GameObject{
         y += vy;
     }
 
+    //4 point collision
+    //checks the 4 points of the collision rectangle against a rectangular volume
     public boolean detectCollision(GameObject obj){
         if(obj.hasCollision && hasCollision){
             return (x >= obj.x && x <= obj.x + obj.collisionWidth && y >= obj.y && y <= obj.y + obj.collisionHeight) ||
